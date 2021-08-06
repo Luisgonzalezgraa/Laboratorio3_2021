@@ -6,7 +6,7 @@ public class Usuario {
     private String passwordUser;
     private ArrayList<Publicacion> listPosts;
 
-    public Usuario(String nameUser, String passwordUser, ArrayList<Publicacion> listPosts, int idUser) {
+    public Usuario() {
         this.nameUser = nameUser;
         this.passwordUser = passwordUser;
         this.listPosts = listPosts;

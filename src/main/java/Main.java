@@ -17,12 +17,15 @@ public class Main {
     public static void main(String[] args) {
 
 
-
+        RedSocial red  = new RedSocial();
 
         int opcionIngresada1 = 0;
 
         Scanner opcion1;
-
+        String nombreL;
+        String contrasenia;
+        String nombreL2;
+        String contrasenia2;
         opcion1 = new Scanner(System.in);
         //SE CREA EL MENÚ
         while (opcionIngresada1 != 3) {
@@ -34,10 +37,23 @@ public class Main {
             opcionIngresada1 = opcion1.nextInt();
             switch (opcionIngresada1) {
                 case 1:
-                    System.out.println("####FIN DE SIMULACIÓN####");
+                    Scanner name = new Scanner(System.in);
+                    System.out.println("Ingrese su Nombre: ");
+                    nombreL = name.nextLine();
+                    Scanner password = new Scanner(System.in);
+                    System.out.println("Ingrese su Contraseña: ");
+                    contrasenia = password.nextLine();
+                    red.register(nombreL,contrasenia);
+
                     break;
                 case 2:
-                    System.out.println("####FIN DE SIMULACIÓN####");
+                    Scanner name2 = new Scanner(System.in);
+                    System.out.println("Ingrese su Nombre: ");
+                    nombreL2 = name2.nextLine();
+                    Scanner password2 = new Scanner(System.in);
+                    System.out.println("Ingrese su Contraseña: ");
+                    contrasenia2 = password2.nextLine();
+                    red.login(nombreL2,contrasenia2);
 
                     break;
                 case 3:
