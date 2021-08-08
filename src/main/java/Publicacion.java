@@ -1,17 +1,32 @@
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Publicacion {
 
     private int idPost;
     private String content;
     private String typePost;
-    private float datePost;
+    private Date datePost;
     private String namePublisher;
+    private ArrayList<String> users;
 
-    public Publicacion(int idPost, String content, String typePost, float datePost, String namePublisher) {
+
+    public Publicacion() {
         this.idPost = idPost;
         this.content = content;
         this.typePost = typePost;
         this.datePost = datePost;
         this.namePublisher = namePublisher;
+        users = new ArrayList<>();
+
+    }
+
+    public ArrayList<String> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<String> users) {
+        this.users = users;
     }
 
     public int getIdPost() {
@@ -38,11 +53,11 @@ public class Publicacion {
         this.typePost = typePost;
     }
 
-    public float getDatePost() {
+    public Date getDatePost() {
         return datePost;
     }
 
-    public void setDatePost(float datePost) {
+    public void setDatePost(Date datePost) {
         this.datePost = datePost;
     }
 

@@ -9,7 +9,7 @@ public class Usuario {
     public Usuario() {
         this.nameUser = nameUser;
         this.passwordUser = passwordUser;
-        this.listPosts = listPosts;
+        listPosts = new ArrayList<>();
         this.idUser = idUser;
     }
 
