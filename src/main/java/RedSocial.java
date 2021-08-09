@@ -94,9 +94,11 @@ public class RedSocial implements InterfazRed {
 
         if(cantidadUsuarios <= listausuarios.size()) {
             Integer i = 0;
+            Integer key = 0;
             while (i < cantidadUsuarios) {
                 String nombreL2;
                 Scanner name2 = new Scanner(System.in);
+                key = 0;
                 System.out.println("Ingrese Usuario dirigida la publicación: ");
                 nombreL2 = name2.nextLine();
                 Integer j = 0;
@@ -105,16 +107,24 @@ public class RedSocial implements InterfazRed {
                     while (k < listausuarios.get(i).size()) {
                         if (nombreL2.equals(listausuarios.get(j).get(k).getNameUser())) {
                             publicacion1.getUsers().add(nombreL2);
+                            System.out.println(listausuarios.get(j).get(k).getNameUser());
+                            k++;
+                            key = 1;
                             break;
+
+
                         } else {
                             k++;
                         }
                     }
                     j++;
-                }
 
-                if (j == listausuarios.size()) {
-                    System.out.println("\nUsuario no existe dentro de la red social\n");
+                    if (key == 1){
+                        break;
+                    }
+                    if (j == listausuarios.size()) {
+                        System.out.println("\nUsuario no existe dentro de la red social\n");
+                    }
                 }
 
                 i++;
@@ -137,6 +147,6 @@ public class RedSocial implements InterfazRed {
     public void share(){
 
     }
-   
+
 
 }
