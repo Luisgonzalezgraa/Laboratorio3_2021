@@ -34,7 +34,7 @@ public class RedSocial implements InterfazRed {
         }
 
         Integer i = 0;
-
+        Integer key = 0;
         Integer largo = listausuarios.size();
         while (i < largo) {
             Integer j = 0;
@@ -43,30 +43,40 @@ public class RedSocial implements InterfazRed {
                 nombreAux = usuaAux.getNameUser();
                 if (usuario.equals(nombreAux)) {
                     j = largo + 1;
-                    System.out.println("Usuario ya registrado intente con otro Username.\n");
+                    key = 1;
+                    break;
                 }
                 j++;
             }
             i++;
+
+
+        }
+        if (key == 1){
+            System.out.println("Usuario ya registrado intente con otro Username.\n");
+        }
+        else{
+            if (i.intValue() == largo.intValue()) {
+                lista2Usuarios.add(user);
+                listausuarios.add(lista2Usuarios);
+                System.out.println("*****************************************");
+                System.out.println("*******USUARIO REGISTRADO CON EXITO******");
+                System.out.println("*****************************************\n");
+            }
         }
 
-        if (i.intValue() == largo.intValue()) {
-            lista2Usuarios.add(user);
-            listausuarios.add(lista2Usuarios);
-            System.out.println("*****************************************");
-            System.out.println("*******USUARIO REGISTRADO CON EXITO******");
-            System.out.println("*****************************************\n");
-        }
+
+
     }
 
     public boolean login(String usuario,String contrasenia){
 
         Integer i  = 0;
-
         while(i<listausuarios.size()) {
             Integer j = 0;
             while (j < listausuarios.get(i).size()) {
                 if (usuario.equals(listausuarios.get(i).get(j).getNameUser()) && contrasenia.equals(listausuarios.get(i).get(j).getPasswordUser())) {
+
                     return true;
                 } else {
                     j++;
@@ -74,6 +84,7 @@ public class RedSocial implements InterfazRed {
             }
             i ++;
         }
+
         if(i == listausuarios.size()) {
 
             return false;
@@ -107,11 +118,9 @@ public class RedSocial implements InterfazRed {
                     while (k < listausuarios.get(i).size()) {
                         if (nombreL2.equals(listausuarios.get(j).get(k).getNameUser())) {
                             publicacion1.getUsers().add(nombreL2);
-                            System.out.println(listausuarios.get(j).get(k).getNameUser());
                             k++;
                             key = 1;
                             break;
-
 
                         } else {
                             k++;
@@ -124,6 +133,7 @@ public class RedSocial implements InterfazRed {
                     }
                     if (j == listausuarios.size()) {
                         System.out.println("\nUsuario no existe dentro de la red social\n");
+                        break;
                     }
                 }
 
@@ -136,8 +146,6 @@ public class RedSocial implements InterfazRed {
 
         lista2Publicaciones.add(publicacion1);
         listapublicaciones.add(lista2Publicaciones);
-
-
 
     }
 
