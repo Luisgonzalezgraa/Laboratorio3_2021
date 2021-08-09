@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Usuario {
 
+    private Integer idUser;
     private String nameUser;
     private String passwordUser;
     private ArrayList<Publicacion> listPosts;
@@ -28,8 +29,6 @@ public class Usuario {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
-
-    private int idUser;
 
     public String getNameUser() {
         return nameUser;

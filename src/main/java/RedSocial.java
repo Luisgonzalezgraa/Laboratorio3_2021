@@ -9,9 +9,42 @@ import java.util.Scanner;
 public class RedSocial implements InterfazRed {
 
     //Atributos
-    ArrayList<ArrayList<Usuario>> listausuarios;
-    ArrayList<ArrayList<Publicacion>> listapublicaciones;
-    ArrayList<ArrayList<Reaccion>>listareacciones;
+    private ArrayList<ArrayList<Usuario>> listausuarios;
+    private ArrayList<ArrayList<Publicacion>> listapublicaciones;
+    private ArrayList<ArrayList<Reaccion>>listareacciones;
+    private String user;
+
+    public ArrayList<ArrayList<Usuario>> getListausuarios() {
+        return listausuarios;
+    }
+
+    public ArrayList<ArrayList<Publicacion>> getListapublicaciones() {
+        return listapublicaciones;
+    }
+
+    public ArrayList<ArrayList<Reaccion>> getListareacciones() {
+        return listareacciones;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setListausuarios(ArrayList<ArrayList<Usuario>> listausuarios) {
+        this.listausuarios = listausuarios;
+    }
+
+    public void setListapublicaciones(ArrayList<ArrayList<Publicacion>> listapublicaciones) {
+        this.listapublicaciones = listapublicaciones;
+    }
+
+    public void setListareacciones(ArrayList<ArrayList<Reaccion>> listareacciones) {
+        this.listareacciones = listareacciones;
+    }
+
+    public void setAutor(String user) {
+        this.user = user;
+    }
 
     public RedSocial() {
         listausuarios = new ArrayList<>();
@@ -24,6 +57,7 @@ public class RedSocial implements InterfazRed {
         Usuario usuaAux;
         user.setNameUser(usuario);
         user.setPasswordUser(contrasenia);
+        user.setIdUser(listausuarios.size());
         String nombreAux;
         ArrayList<Usuario> lista2Usuarios = new ArrayList<>();
 
@@ -93,10 +127,10 @@ public class RedSocial implements InterfazRed {
     return true;
     }
 
-    public void post(String autor, String tipoPublicacion, String publicacion, Integer cantidadUsuarios){
+    public void post(String tipoPublicacion, String publicacion, Integer cantidadUsuarios){
         Date fecha = new Date();
         Publicacion publicacion1 = new Publicacion();
-        publicacion1.setNamePublisher(autor);
+        publicacion1.setNamePublisher(user);
         publicacion1.setTypePost(tipoPublicacion);
         publicacion1.setDatePost(fecha);
         publicacion1.setContent(publicacion);
@@ -132,24 +166,88 @@ public class RedSocial implements InterfazRed {
                         break;
                     }
                     if (j == listausuarios.size()) {
-                        System.out.println("\nUsuario no existe dentro de la red social\n");
+                        key = 2;
                         break;
                     }
                 }
 
                 i++;
             }
+            if (key == 2){
+                System.out.println("\nUsuario no existe dentro de la red social\n");
+            }
+            else{
+                lista2Publicaciones.add(publicacion1);
+                listapublicaciones.add(lista2Publicaciones);
+                Integer aux = 0;
+                while (aux < listausuarios.size()){
+                    Integer aux2 = 0;
+                    while (aux2 < listausuarios.get(aux).size()) {
+                        if (user.equals(listausuarios.get(aux).get(aux2).getNameUser())) {
+                            listausuarios.get(aux).get(aux2).getListPosts().add(publicacion1);
+                            break;
+                        } else {
+                            aux2++;
+                        }
+                    }
+                    aux ++;
+
+                }
+                System.out.println("\n***PUBLICACIÓN INGRESADA CORRECTAMENTE***\n");
+            }
         }
         else {
             System.out.println("\n***lA CANTIDAD DE USUARIOS INGRESADOS NO SE ENCUENTRAN EN LA RED SOCIAL***\n");
         }
 
-        lista2Publicaciones.add(publicacion1);
-        listapublicaciones.add(lista2Publicaciones);
+
+
 
     }
 
-    public void follow (){
+    public void follow (String usuario){
+        Date fecha = new Date();
+        Reaccion reaccion = new Reaccion();
+        reaccion.setDateReac(fecha);
+        reaccion.setNameUser(user);
+        reaccion.setIdReac(listareacciones.size());
+        reaccion.setTypeReac("Follow");
+        ArrayList<Reaccion> listaDeReacciones = new ArrayList<>();
+        if(user.equals(usuario)){
+            System.out.println("\n!!!ERROR NO SE PUEDE SEGUIR A USTED MISMO!!!\n");
+        }
+        else {
+            Integer i = 0 ;
+            Integer key = 0;
+            while(i<listausuarios.size()){
+                Integer j = 0;
+                while (j<listausuarios.get(i).size()){
+                    if (usuario.equals(listausuarios.get(i).get(j).getNameUser())){
+                        reaccion.setContentReac(user + "sigue a "+ usuario);
+                        listaDeReacciones.add(reaccion);
+                        listareacciones.add(listaDeReacciones);
+                        System.out.println("\n***USTED SIGUE A " + usuario + " AHORA***\n");
+                        key = 1;
+                        break;
+                    }
+                    else {
+                        j++;
+                    }
+                }
+                if (key == 1){
+                    break;
+                }
+                i++;
+                if (i == listausuarios.size()) {
+                    key = 2;
+                    break;
+                }
+
+            }
+            if (key == 2){
+                System.out.println("\nUsuario no existe dentro de la red social\n");
+            }
+        }
 
     }
     public void share(){

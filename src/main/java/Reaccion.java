@@ -1,11 +1,14 @@
+import java.util.Date;
+
 public class Reaccion {
 
+    private int idReac;
     private String nameUser;
-    private float dateReac;
+    private Date dateReac;
     private String contentReac;
     private String typeReac;
 
-    public Reaccion(String nameUser, float dateReac, String contentReac, String typeReac, int idReac) {
+    public Reaccion() {
         this.nameUser = nameUser;
         this.dateReac = dateReac;
         this.contentReac = contentReac;
@@ -13,7 +16,7 @@ public class Reaccion {
         this.idReac = idReac;
     }
 
-    private int idReac;
+
 
     public int getIdReac() {
         return idReac;
@@ -31,11 +34,11 @@ public class Reaccion {
         this.nameUser = nameUser;
     }
 
-    public float getDateReac() {
+    public Date getDateReac() {
         return dateReac;
     }
 
-    public void setDateReac(float dateReac) {
+    public void setDateReac(Date dateReac) {
         this.dateReac = dateReac;
     }
 

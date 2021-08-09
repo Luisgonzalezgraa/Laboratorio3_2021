@@ -28,6 +28,7 @@ public class Main {
         String contrasenia2;
         String tipoPost;
         String post;
+        String usuarioSeguir;
         int cantU;
         opcion1 = new Scanner(System.in);
         //SE CREA EL MENÚ
@@ -86,11 +87,16 @@ public class Main {
                                     Scanner cantidad = new Scanner(System.in);
                                     System.out.println("Ingrese cantidad de usuarios dirigidos la publicación: ");
                                     cantU = cantidad.nextInt();
-                                    red.post(nombreL2,tipoPost,post,cantU);
+                                    red.setAutor(nombreL2);
+                                    red.post(tipoPost,post,cantU);
 
                                     break;
                                 case 2:
-                                    System.out.println("####FIN DE SIMULACIÓN####");
+                                    red.setAutor(nombreL2);
+                                    Scanner usuarioAs = new Scanner(System.in);
+                                    System.out.println("Ingrese usuario a seguir: ");
+                                    usuarioSeguir = usuarioAs.nextLine();
+                                    red.follow(usuarioSeguir);
                                     break;
                                 case 3:
                                     System.out.println("####FIN DE SIMULACIÓN####");
