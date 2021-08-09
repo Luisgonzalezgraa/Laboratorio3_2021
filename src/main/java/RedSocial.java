@@ -102,17 +102,17 @@ public class RedSocial implements InterfazRed {
                 Integer j = 0;
                 while (j < listausuarios.size()) {
                     Integer k = 0;
-                    while (k < listausuarios.get(j).size()) {
+                    while (k < listausuarios.get(i).size()) {
                         if (nombreL2.equals(listausuarios.get(j).get(k).getNameUser())) {
                             publicacion1.getUsers().add(nombreL2);
-                            j = 0;
                             break;
                         } else {
                             k++;
                         }
                     }
-                    j ++;
+                    j++;
                 }
+
                 if (j == listausuarios.size()) {
                     System.out.println("\nUsuario no existe dentro de la red social\n");
                 }
@@ -130,5 +130,13 @@ public class RedSocial implements InterfazRed {
 
 
     }
+
+    public void follow (){
+
+    }
+    public void share(){
+
+    }
+   
 
 }
