@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -29,6 +30,8 @@ public class Main {
         String tipoPost;
         String post;
         String usuarioSeguir;
+        Integer usuariosC;
+        ArrayList<String> usuariosAcompartir = new ArrayList<>();
         int cantU;
         opcion1 = new Scanner(System.in);
         //SE CREA EL MENÚ
@@ -99,7 +102,25 @@ public class Main {
                                     red.follow(usuarioSeguir);
                                     break;
                                 case 3:
-                                    System.out.println("####FIN DE SIMULACIÓN####");
+                                    red.setAutor(nombreL2);
+                                    String uCompartir;
+                                    Integer idComp;
+                                    Scanner id = new Scanner(System.in);
+                                    System.out.println("Ingrese id de la publicación: ");
+                                    idComp = id.nextInt();
+                                    Scanner usuarios = new Scanner(System.in);
+                                    System.out.println("Ingrese numero de usuarios a compartir: ");
+                                    usuariosC = usuarios.nextInt();
+                                    Integer i = 0;
+                                    while (i< usuariosC){
+                                        Scanner usuariosCompa = new Scanner(System.in);
+                                        System.out.println("Ingrese nombre de usuario que desea compartir la publicación: ");
+                                        uCompartir = usuariosCompa.nextLine();
+                                        usuariosAcompartir.add(uCompartir);
+                                        i++;
+                                    }
+                                    red.share(idComp,usuariosAcompartir);
+
                                     break;
                                 case 4:
                                     System.out.println("####FIN DE SIMULACIÓN####");

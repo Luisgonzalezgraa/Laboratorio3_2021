@@ -250,7 +250,51 @@ public class RedSocial implements InterfazRed {
         }
 
     }
-    public void share(){
+    public void share(Integer idPost,ArrayList<String> usuariosCom){
+        Date fecha = new Date();
+        Publicacion compartido = new Publicacion();
+        compartido.setNamePublisher(user);
+        compartido.setTypePost("Share");
+        compartido.setDatePost(fecha);
+        ArrayList<Publicacion> listaDeCompartidos= new ArrayList<>();
+        Integer key = 0;
+        Integer i = 0;
+        while (i < listapublicaciones.size()){
+            Integer j = 0;
+            while (j<(listapublicaciones.get(i).size())){
+                if (idPost.equals(listapublicaciones.get(i).get(j).getIdPost())){
+                    compartido.setUsers(usuariosCom);
+                    compartido.setIdPost(listapublicaciones.size());
+                    compartido.setContent(listapublicaciones.get(i).get(j).getContent());
+                    listaDeCompartidos.add(compartido);
+                    listapublicaciones.add(listaDeCompartidos);
+                    System.out.println("\n***SE COMPARTIO CORRECTAMENTE LA PUBLICACION CON ID " + idPost + "***\n" );
+                    key = 1;
+                    break;
+
+                }
+                else {
+                    j++;
+                }
+
+            }
+            if (key == 1){
+                break;
+            }
+            i ++;
+            if (i == listapublicaciones.size()) {
+                key = 2;
+                break;
+            }
+
+        }
+        if (key == 2){
+            System.out.println("\n!!! NO EXISTE ID ASOCIADA A LA PUBLICACIÓN!!!\n");
+        }
+
+
+
+
 
     }
 
