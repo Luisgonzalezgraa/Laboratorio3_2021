@@ -173,9 +173,16 @@ public class RedSocial implements InterfazRed {
 
                 i++;
             }
+            if (cantidadUsuarios == 0){
+                publicacion1.getUsers().add("Todos");
+                lista2Publicaciones.add(publicacion1);
+                listapublicaciones.add(lista2Publicaciones);
+            }
+
             if (key == 2){
                 System.out.println("\nUsuario no existe dentro de la red social\n");
             }
+
             else{
                 lista2Publicaciones.add(publicacion1);
                 listapublicaciones.add(lista2Publicaciones);
@@ -223,7 +230,7 @@ public class RedSocial implements InterfazRed {
                 Integer j = 0;
                 while (j<listausuarios.get(i).size()){
                     if (usuario.equals(listausuarios.get(i).get(j).getNameUser())){
-                        reaccion.setContentReac(user + "sigue a "+ usuario);
+                        reaccion.setContentReac(user + " sigue a "+ usuario);
                         listaDeReacciones.add(reaccion);
                         listareacciones.add(listaDeReacciones);
                         System.out.println("\n***USTED SIGUE A " + usuario + " AHORA***\n");
@@ -291,10 +298,103 @@ public class RedSocial implements InterfazRed {
         if (key == 2){
             System.out.println("\n!!! NO EXISTE ID ASOCIADA A LA PUBLICACIÓN!!!\n");
         }
+    }
+
+    public void visualize(Integer tipo){
+
+        if (tipo == 0) {
+            Integer iU = 0;
+            while (iU < listausuarios.size()) {
+                Integer jU = 0;
+                while (jU  < listausuarios.get(iU).size()) {
+                    System.out.println(listausuarios.get(iU).get(jU ).toString());
+                    jU ++;
+                }
+                iU++;
+            }
+            if (listausuarios.size() == 0){
+                System.out.println("\n****NO EXISTEN USUARIOS DENTRO DE LA RED SOCIAL****\n");
+            }
+            Integer i = 0;
+            while (i < listapublicaciones.size()) {
+                Integer j = 0;
+                while (j < listapublicaciones.get(i).size()) {
+                    System.out.println(listapublicaciones.get(i).get(j).toString());
+
+                    j++;
+                }
+                i++;
+            }
+            if (listapublicaciones.size() == 0){
+                System.out.println("\n****NO EXISTEN PUBLICACIONES DENTRO DE LA RED SOCIAL****\n");
+            }
+            Integer wr = 0;
+            while (wr < listareacciones.size()) {
+                Integer zr = 0;
+                while (zr < listareacciones.get(wr).size()) {
+                    System.out.println(listareacciones.get(wr).get(zr).toString());
+
+                    zr++;
+                }
+                wr++;
+            }
+            if (listareacciones.size() == 0){
+                System.out.println("\n****NO EXISTEN REACCIONES DENTRO DE LA PLATAFORMA****\n");
+            }
 
 
+        }
+        else {
+            Integer iU = 0;
+            while (iU < listausuarios.size()) {
+                Integer jU = 0;
+                while (jU  < listausuarios.get(iU).size()) {
+                    if (user.equals(listausuarios.get(iU).get(jU).getNameUser())) {
+                        System.out.println(listausuarios.get(iU).get(jU).toString());
+                        jU++;
+                    }
+                    else{
+                        jU ++;
+                    }
+                }
+                iU++;
+            }
+            Integer i = 0;
+            while (i < listapublicaciones.size()) {
+                Integer j = 0;
+                while (j < listapublicaciones.get(i).size()) {
+                    if (user.equals(listausuarios.get(i).get(j).getNameUser())) {
+                        System.out.println(listapublicaciones.get(i).get(j).toString());
+                        j++;
+                    }
+                    else{
+                        j ++;
+                    }
+                }
+                i++;
+            }
+            if (listapublicaciones.size() == 0){
+                System.out.println("\n****USUARIO NO REGISTRA PUBLICACIONES****\n");
+            }
+            Integer wr = 0;
+            while (wr < listareacciones.size()) {
+                Integer zr = 0;
+                while (zr < listareacciones.get(wr).size()) {
+                    if (user.equals(listausuarios.get(wr).get(zr).getNameUser())) {
+                        System.out.println(listareacciones.get(wr).get(zr).toString());
+                        zr++;
+                    }
+                    else{
+                        zr ++;
+                    }
+                }
+                wr++;
+            }
+            if (listareacciones.size() == 0){
+                System.out.println("\n****USUARIO NO REGISTRA REACCIONES****\n");
+            }
 
-
+        }
 
     }
 

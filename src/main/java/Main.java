@@ -32,14 +32,16 @@ public class Main {
         String usuarioSeguir;
         Integer usuariosC;
         ArrayList<String> usuariosAcompartir = new ArrayList<>();
+        Integer tipo = 0;
         int cantU;
         opcion1 = new Scanner(System.in);
         //SE CREA EL MENÚ
-        while (opcionIngresada1 != 3) {
+        while (opcionIngresada1 != 4) {
             System.out.println("####BIENVENIDO HA SIMULADOR DE RED SOCIAL##########");
             System.out.println("1. Registrarse");
             System.out.println("2. Ingresar");
-            System.out.println("3. Salir de programa");
+            System.out.println("3. Visualizar Red Social");
+            System.out.println("4. Cerrar sesión");
             System.out.println("INTRODUZCA SU OPCIÓN: ");
             opcionIngresada1 = opcion1.nextInt();
             switch (opcionIngresada1) {
@@ -111,25 +113,32 @@ public class Main {
                                     Scanner usuarios = new Scanner(System.in);
                                     System.out.println("Ingrese numero de usuarios a compartir: ");
                                     usuariosC = usuarios.nextInt();
-                                    Integer i = 0;
-                                    while (i< usuariosC){
-                                        Scanner usuariosCompa = new Scanner(System.in);
-                                        System.out.println("Ingrese nombre de usuario que desea compartir la publicación: ");
-                                        uCompartir = usuariosCompa.nextLine();
-                                        usuariosAcompartir.add(uCompartir);
-                                        i++;
+                                    if (usuariosC < red.getListausuarios().size()) {
+                                        Integer i = 0;
+                                        while (i < usuariosC) {
+                                            Scanner usuariosCompa = new Scanner(System.in);
+                                            System.out.println("Ingrese nombre de usuario que desea compartir la publicación: ");
+                                            uCompartir = usuariosCompa.nextLine();
+                                            usuariosAcompartir.add(uCompartir);
+                                            i++;
+                                        }
+                                        red.share(idComp, usuariosAcompartir);
                                     }
-                                    red.share(idComp,usuariosAcompartir);
+                                    else{
+                                        System.out.println("!!!NO EXISTEN LA CANTIDAD DE USUARIOS EN LA PLATAFORMA!!!\n");
+                                    }
 
                                     break;
                                 case 4:
-                                    System.out.println("####FIN DE SIMULACIÓN####");
+                                    red.setAutor(nombreL2);
+                                    tipo = 1;
+                                    red.visualize(tipo);
                                     break;
                                 case 5:
                                     System.out.println("####SESIÓN CERRADA#####");
                                     break;
                                 case 6:
-                                    opcionIngresada1 = 3;
+                                    opcionIngresada1 = 4;
                                     break;
                                 default:
                                     System.out.println("Opción ingresada invalida.");
@@ -144,6 +153,10 @@ public class Main {
                     }
                     break;
                 case 3:
+                    tipo = 0;
+                    red.visualize(tipo);
+                    break;
+                case 4:
                     System.out.println("####FIN DE SIMULACIÓN####");
                     break;
                 default:

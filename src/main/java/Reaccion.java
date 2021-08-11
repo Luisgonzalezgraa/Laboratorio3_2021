@@ -16,7 +16,16 @@ public class Reaccion {
         this.idReac = idReac;
     }
 
-
+    @Override
+    public String toString() {
+        return "****Reacción****\n" +
+                "Id Reacción=" + idReac + "\n" +
+                "Nombre Usuario= " + nameUser + "\n" +
+                "Fecha de reacción= " + dateReac + "\n" +
+                "Contenido reacción= " + contentReac + "\n" +
+                "Tipo de reacción" + typeReac + "\n"
+                ;
+    }
 
     public int getIdReac() {
         return idReac;

@@ -14,6 +14,15 @@ public class Usuario {
         this.idUser = idUser;
     }
 
+    @Override
+    public String toString() {
+        return "****Usuario****\n" +
+                "Id Usuario=" + idUser + "\n" +
+                "Nombre usuario: " + nameUser + "\n"
+
+                ;
+    }
+
     public ArrayList<Publicacion> getListPosts() {
         return listPosts;
     }
