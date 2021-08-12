@@ -23,15 +23,30 @@ public class Publicacion {
 
     @Override
     public String toString() {
-        return "****Publicación****\n" +
-                "Id Publicación= " + idPost +"\n" +
-                "Nombre Publicador= " + namePublisher + "\n" +
-                "Contenido= " + content + "\n" +
-                "Tipo de publicación= " + typePost + "\n" +
-                "Fecha de publicación= " + datePost + "\n" +
-                "Usuarios dirigida la publicación: " + users + "\n"
-                ;
+        if (typePost == "Share"){
+            return "****Publicación Compartida****\n" +
+                    "Id Publicación Compartida= " + idPost +"\n" +
+                    "Nombre Publicador= " + namePublisher + "\n" +
+                    "Contenido= " + content + "\n" +
+                    "Tipo de publicación= " + typePost + "\n" +
+                    "Fecha de publicación= " + datePost + "\n" +
+                    "Usuarios dirigida la publicación: " + users + "\n"
+                    ;
+        }
+        else{
+            return "****Publicación****\n" +
+                    "Id Publicación= " + idPost +"\n" +
+                    "Nombre Publicador= " + namePublisher + "\n" +
+                    "Contenido= " + content + "\n" +
+                    "Tipo de publicación= " + typePost + "\n" +
+                    "Fecha de publicación= " + datePost + "\n" +
+                    "Usuarios dirigida la publicación: " + users + "\n"
+                    ;
+        }
+
     }
+
+
 
     public ArrayList<String> getUsers() {
         return users;

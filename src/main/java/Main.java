@@ -122,7 +122,7 @@ public class Main {
                                             usuariosAcompartir.add(uCompartir);
                                             i++;
                                         }
-                                        red.share(idComp, usuariosAcompartir);
+                                        red.share(idComp, usuariosAcompartir,usuariosC);
                                     }
                                     else{
                                         System.out.println("!!!NO EXISTEN LA CANTIDAD DE USUARIOS EN LA PLATAFORMA!!!\n");

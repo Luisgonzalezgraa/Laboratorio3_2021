@@ -23,7 +23,7 @@ public class Reaccion {
                 "Nombre Usuario= " + nameUser + "\n" +
                 "Fecha de reacción= " + dateReac + "\n" +
                 "Contenido reacción= " + contentReac + "\n" +
-                "Tipo de reacción" + typeReac + "\n"
+                "Tipo de reacción= " + typeReac + "\n"
                 ;
     }
 

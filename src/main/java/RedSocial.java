@@ -173,11 +173,6 @@ public class RedSocial implements InterfazRed {
 
                 i++;
             }
-            if (cantidadUsuarios == 0){
-                publicacion1.getUsers().add("Todos");
-                lista2Publicaciones.add(publicacion1);
-                listapublicaciones.add(lista2Publicaciones);
-            }
 
             if (key == 2){
                 System.out.println("\nUsuario no existe dentro de la red social\n");
@@ -257,12 +252,13 @@ public class RedSocial implements InterfazRed {
         }
 
     }
-    public void share(Integer idPost,ArrayList<String> usuariosCom){
+    public void share(Integer idPost,ArrayList<String> usuariosCom,int cantidadUsuarios){
         Date fecha = new Date();
         Publicacion compartido = new Publicacion();
         compartido.setNamePublisher(user);
         compartido.setTypePost("Share");
         compartido.setDatePost(fecha);
+        ArrayList<String> listaVacia = new ArrayList<>();
         ArrayList<Publicacion> listaDeCompartidos= new ArrayList<>();
         Integer key = 0;
         Integer i = 0;
@@ -270,7 +266,12 @@ public class RedSocial implements InterfazRed {
             Integer j = 0;
             while (j<(listapublicaciones.get(i).size())){
                 if (idPost.equals(listapublicaciones.get(i).get(j).getIdPost())){
-                    compartido.setUsers(usuariosCom);
+                    if (cantidadUsuarios == 0){
+                        compartido.setUsers(listaVacia);
+                    }
+                    else {
+                        compartido.setUsers(usuariosCom);
+                    }
                     compartido.setIdPost(listapublicaciones.size());
                     compartido.setContent(listapublicaciones.get(i).get(j).getContent());
                     listaDeCompartidos.add(compartido);
@@ -320,7 +321,6 @@ public class RedSocial implements InterfazRed {
                 Integer j = 0;
                 while (j < listapublicaciones.get(i).size()) {
                     System.out.println(listapublicaciones.get(i).get(j).toString());
-
                     j++;
                 }
                 i++;
@@ -363,7 +363,7 @@ public class RedSocial implements InterfazRed {
             while (i < listapublicaciones.size()) {
                 Integer j = 0;
                 while (j < listapublicaciones.get(i).size()) {
-                    if (user.equals(listausuarios.get(i).get(j).getNameUser())) {
+                    if (user.equals(listapublicaciones.get(i).get(j).getNamePublisher())) {
                         System.out.println(listapublicaciones.get(i).get(j).toString());
                         j++;
                     }
@@ -380,7 +380,7 @@ public class RedSocial implements InterfazRed {
             while (wr < listareacciones.size()) {
                 Integer zr = 0;
                 while (zr < listareacciones.get(wr).size()) {
-                    if (user.equals(listausuarios.get(wr).get(zr).getNameUser())) {
+                    if (user.equals(listareacciones.get(wr).get(zr).getNameUser())) {
                         System.out.println(listareacciones.get(wr).get(zr).toString());
                         zr++;
                     }
